@@ -1,9 +1,4 @@
 # Terraform-new
-Create the VPC
- resource "aws_vpc" "Main" {                # Creating VPC here
-   cidr_block       = var.main_vpc_cidr     # Defining the CIDR block use 10.0.0.0/24 for demo
-   instance_tenancy = "default"
- }
  Create Internet Gateway and attach it to VPC
  resource "aws_internet_gateway" "IGW" {    # Creating Internet Gateway
     vpc_id =  aws_vpc.Main.id               # vpc_id will be generated after we create VPC
@@ -52,3 +47,12 @@ Create the VPC
    allocation_id = aws_eip.nateIP.id
    subnet_id = aws_subnet.publicsubnets.id
  }
+=======
+resource "aws_vpc" "main" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "main"
+  }
+}
